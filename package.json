@@ -1,0 +1,25 @@
+{
+  "name": "fundoo-notes-app",
+  "version": "1.0.0",
+  "description": "Fundoo notes app are used to organize and keep track of all your notes.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "debug": "nodemon --inspect server.js"
+  },
+  "keywords": [
+    "Express",
+    "RestAPI",
+    "MonoDB",
+    "Mongoose"
+  ],
+  "author": "Atharva Tathe",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "mongoose": "^5.12.13"
+  }
+}
