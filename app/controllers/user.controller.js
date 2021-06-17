@@ -1,9 +1,16 @@
+/**
+ * @module       Fundoo-Notes
+ * @file         user.controller.js
+ * @description  Usercontroller class holds the Api methods for routing 
+ * @author       Atharva Tathe
+ * @since        15/06/2021  
+-----------------------------------------------------------------------------------------------*/
 //importing service.js file modules
 const service = require('../services/service');
 //importing validation schema
 const {validateSchema} = require('../middleware/validation.js');
 
-class userController{
+class UserController{
   /**
      * @description function written to register user
      * @param {*} A valid req is expected
@@ -28,4 +35,5 @@ class userController{
    
 }
 
-module.exports = new userController();
+//Exporting USerController Class
+module.exports = new UserController();

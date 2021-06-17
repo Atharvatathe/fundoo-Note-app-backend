@@ -1,5 +1,14 @@
+/**
+ * @module       USerModule
+ * @file         user.models.js
+ * @description  userSchema holds the database Schema 
+ * @author       Atharva Tathe
+ * @since        15/06/2021  
+-----------------------------------------------------------------------------------------------*/
+//Importing mongoose module
 const mongoose = require('mongoose');
 
+//Creating User Schema
 const userSchema = new mongoose.Schema({
     firstName: {
         type:String,
@@ -31,7 +40,7 @@ const userInfoModel = mongoose.model('UserInfo', userSchema)
 
 //Create class for performing CRUD operation 
 
-class userModel {
+class UserModel {
     /**
      * @description
      * register user in the database
@@ -57,4 +66,4 @@ class userModel {
 
 }
 //exporting the class to use function of this class
-module.exports = new userModel();
+module.exports = new UserModel();
