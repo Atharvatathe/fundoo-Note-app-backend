@@ -27,5 +27,34 @@ const userSchema = new mongoose.Schema({
 });
 
 //Exporting schema as a module
-module.exports = mongoose.model('FundooNote', userSchema);
+module.exports = mongoose.model('FundooNote', userSchema)
+
+//Create class for performing CRUD operation 
+
+module.exports = class userModel {
+    createUser(userData) {
+     //crete for new user notes
+      const user ={
+        firstName:userData.firstName,
+        lastName:userData.lastName,
+        email:userData.email,
+        password:userData.password
+    }
+    
+         
+        //Save new USer to databse
+      user.save()
+      .then(userData=>{
+          res.send(userData);
+      }).catch(err=>{
+          res.status(500).send({
+              message: err.message || "error occure while creaing the note"
+          });
+      });
+      return user;
+  }
+
+}
+//exporting the class to use function of this class
+
 

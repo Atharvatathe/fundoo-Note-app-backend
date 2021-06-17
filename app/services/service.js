@@ -9,26 +9,8 @@ class userSrevice{
      * @param {*} A valid userData is expected
      */
     addUser(userData) {
-        //validate request
-        
-        //crete for new user notes
-        const user = new userModel({
-            firstName:userData.firstName,
-            lastName:userData.lastName,
-            email:userData.email,
-            password:userData.password
-        });
-            
-        //Save new USer to databse
-         user.save()
-        .then(userData=>{
-            res.send(userData);
-        }).catch(err=>{
-            res.status(500).send({
-                message: err.message || "error occure while creaing the note"
-            });
-        });
-        return user;
+        const user = userModel.createUser(userData);
+            return user;
     };
     
     /**

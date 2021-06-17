@@ -11,15 +11,16 @@ class userController{
      */
   regiseterUser = (req, res) => {
     try{
-        const userData = {
+     
+       const userData = {
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           email: req.body.email,
           password: req.body.password
           }
 
-        const createNote = service.addUser(userData);
-        res.json(createNote);
+        const createUser = service.addUser(userData);
+        res.json(createUser);
       }catch(error){
         res.status(500).json({error:error});
       
