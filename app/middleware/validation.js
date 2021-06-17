@@ -1,5 +1,4 @@
 'use strict';
-
 //importing joi module
 const joi = require('joi');
 

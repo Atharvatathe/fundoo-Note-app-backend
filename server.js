@@ -1,3 +1,6 @@
+//importing dotenv file
+require('dotenv').config();
+
 const express = require('express');
 const dbconnect = require('./config/database.config');
 
@@ -26,8 +29,8 @@ app.get('/',(req, res) => {
 
 // Require Notes routes
 require('./app/routes/user.route.js')(app);
-
+const PORT = process.env.PORT
 //listen for request
-app.listen(6000, ()=> {
+app.listen(PORT, ()=> {
     console.log("Server is listening on port 6000");
 });

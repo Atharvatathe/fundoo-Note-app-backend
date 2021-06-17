@@ -11,7 +11,4 @@ module.exports = (app) => {
     // Registration user Post request
     app.post('/register', controller.regiseterUser);
 
-    // Retrieve all Notes
-    app.get('/register', controller.getUserInfo);
-
 }

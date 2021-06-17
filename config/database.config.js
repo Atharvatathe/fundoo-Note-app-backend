@@ -1,5 +1,8 @@
+//importing dotenv file
+require('dotenv').config();
+
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost:27017/fundoo-notes'
+const url = process.env.URL;
 mongoose.Promise = global.Promise;
 
 /**
@@ -9,8 +12,8 @@ mongoose.Promise = global.Promise;
  */
 module.exports = function databaseconnect(){
     mongoose.connect(url, {
-    useNewUrlParser: true
-}).then(() => {
+    useNewUrlParser: true,useUnifiedTopology: true 
+    }).then(() => {
     console.log("Successfully connected to the database");    
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
