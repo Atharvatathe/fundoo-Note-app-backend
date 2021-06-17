@@ -32,5 +32,5 @@ require('./app/routes/user.route.js')(app);
 const PORT = process.env.PORT
 //listen for request
 app.listen(PORT, ()=> {
-    console.log("Server is listening on port 6000");
+    console.log("Server is listening on port",PORT);
 });
