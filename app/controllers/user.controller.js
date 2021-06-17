@@ -17,6 +17,14 @@ class UserController{
      * @param {*} res
      */
   regiseterUser = (req, res) => {
+    
+    var userValidation = validateSchema.validate(req.body);
+  if(userValidation.error){
+    return res
+      .status(400)
+      .send({ message: userValidation.error.details[0].message });
+  }
+
     const userData = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
