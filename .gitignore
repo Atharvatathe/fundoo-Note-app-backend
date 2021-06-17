@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.sw*
