@@ -8,6 +8,9 @@
 //Importing mongoose module
 const mongoose = require('mongoose');
 
+//Importing bcrypt module
+const bcrypt = require('bcrypt');
+
 //Creating User Schema
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -23,7 +26,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type:String,
         required: true,
-        validate: /^[a-zA-Z]{3}[a-zA-Z0-9\\-\\_\\+]*(\\.)?[a-zA-Z0-9]*(?<!\\.|\\+|\\_|\\-)\\@(?!\\.)[a-z0-9]*(\\.[a-z]{2,3})(\\.[a-z]{2,3})?$/
+        validate: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/
         
     },
     password: {
@@ -34,6 +37,18 @@ const userSchema = new mongoose.Schema({
 },{
     timestamps: true
 });
+/**
+ * @description
+ * Convert user password into hash before store in database
+ */
+
+userSchema.pre('save', async function(next){
+    if(this.isModified("password")){
+        this.password = await bcrypt.hash(this.password,10)
+    }
+    next();
+})
+
 
 //Exporting schema as a module
 const userInfoModel = mongoose.model('UserInfo', userSchema)

@@ -17,7 +17,7 @@ class UserSrevice{
      */
     addUser = (userData,callBack) => {
         userModel.createUser(userData, (error, data) => {
-            return ((error) ? callBack(error.null) : callBack(null, data));
+            return ((error) ? callBack(error,null) : callBack(null, data));
         });
     }
 }
