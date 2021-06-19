@@ -19,7 +19,7 @@ class UserController{
   regiseterUser = (req, res) => {
     
     var userValidation = validateSchema.validate(req.body);
-  if(userValidation.error){
+    if(userValidation.error){
     return res
       .status(400)
       .send({ message: userValidation.error.details[0].message });
@@ -32,13 +32,31 @@ class UserController{
       password: req.body.password
       }
 
-    const user={}
-
     service.addUser(userData, (error, data) => {
         return error ? res.status(500).send({status:false,
           message: error.message || "Some error occurred while registering user" }) :
-          res.status(200).send({message:"User added Sucessfully", data: user.data = data})
+          res.status(200).send({message:"User added Sucessfully", data: data})
       });
+  }
+
+  /**
+     * @description function written to login user
+     * @param {*} A valid req is expected
+     * @param {*} res
+     */
+
+  loginApi = (req,res)=>{
+
+    const loginData = {
+      email: req.body.email,
+      password: req.body.password
+    }
+
+    service.loginUser(loginData,(error, data) => {
+      return error ? res.status(500).send({status:false,
+        message: error.message || "Some error occurred while login user" }) :
+        res.status(200).send({message:"User login Sucessfully", data: data})
+    });
   }
    
 }

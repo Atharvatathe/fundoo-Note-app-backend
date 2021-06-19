@@ -19,4 +19,7 @@ module.exports = (app) => {
     // Registration user Post request
     app.post('/register', controller.regiseterUser);
 
+    //Api for login user
+    app.post('/login',controller.loginApi);
+
 }

@@ -79,6 +79,25 @@ class UserModel {
         });
     }
 
+    /**
+     * @description
+     * login user in the database
+     * @param {} loginData 
+     * @param {*} callBack service
+     */
+
+    loginDetails = (loginData,callBack) => {
+        userInfoModel.findOne({'email':loginData.email},(error,data)=>{
+        if(error){
+            return callBack(error,null);
+        }
+        else if(!data){
+            return callBack("Invalid Credentials",null);
+            
+        }
+        return callBack(null,data)
+        })
+    }
 }
 //exporting the class to use function of this class
 module.exports = new UserModel();

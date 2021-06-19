@@ -20,6 +20,17 @@ class UserSrevice{
             return ((error) ? callBack(error,null) : callBack(null, data));
         });
     }
+
+    /**
+     * @description function written to take logged user data from database 
+     * @param {*} A valid userData is expected
+     */
+
+    loginUser = (loginData,callBack) => {
+        userModel.loginDetails(loginData,(error, data) => {
+            return ((error) ? callBack(error,null) : callBack(null, data));
+        });
+    }
 }
 
 module.exports = new UserSrevice();
