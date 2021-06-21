@@ -65,19 +65,29 @@ class UserModel {
     
     createUser=(userData,callBack) => {
      //crete for new user notes
-      const user = new userInfoModel({
-        firstName:userData.firstName,
-        lastName:userData.lastName,
-        email:userData.email,
-        password:userData.password
-    });
-    
+
+    userInfoModel.findOne({email:userData.email},(error,data)=>{
+        if(error) callBack(error,null);
+        if(data){
+            return callBack("User is alredy registred",null);
+        }
+        else{
+          const user = new userInfoModel({
+              firstName:userData.firstName,
+              lastName:userData.lastName,
+              email:userData.email,
+              password:userData.password
+          });
+          
+
          
-        //Save new USer to databse
-        user.save({}, (error, data) => {
-            return((error) ? (callBack(error, null)) : (callBack(null, data)));
-        });
+      //Save new USer to databse
+      user.save({}, (error, data) => {
+          return((error) ? (callBack(error, null)) : (callBack(null, data)));
+      });
     }
+  });
+}
 
     /**
      * @description
