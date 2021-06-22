@@ -55,7 +55,7 @@ class UserController{
     service.loginUser(loginData,(error, data) => {
       return error ? res.status(500).send({status:false,
         message: error.message || "Some error occurred while login user" }) :
-        res.status(200).send({message:"User login Sucessfully", data: data})
+        res.status(400).send({message:"User login Sucessfully", data: data})
     });
   }
    

@@ -9,6 +9,7 @@
 "use strict";
 //importing model modules 
 const userModel = require('../models/user.model');
+const helperClass = require('../middleware/helper');
 
 class UserSrevice{
     /**
@@ -27,8 +28,17 @@ class UserSrevice{
      */
 
     loginUser = (loginData,callBack) => {
+        const token = helperClass.generateAuthTocken({loginData});
+        console.log(token);
+
         userModel.loginDetails(loginData,(error, data) => {
-            return ((error) ? callBack(error,null) : callBack(null, data));
+            if (error) {
+                callBack(error, null);
+            }
+            else if(helperClass.bcryptDataCheck(userData.password, data.password)){
+                return callBack("Incorrect password", error);
+            }
+            return callBack(null, token);
         });
     }
 }
