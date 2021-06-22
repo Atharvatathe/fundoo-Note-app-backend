@@ -3,7 +3,8 @@ require('dotenv').config();
 
 const express = require('express');
 const dbconnect = require('./config/database.config');
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./app/swagger/swagger.json');
 /**
  * Connection to database
  * - return connection
@@ -21,6 +22,10 @@ app.use(express.urlencoded({extended : true}))
 
 //parse request of content-type - application/json
 app.use(express.json());
+
+// swagger ui
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 //define a simple route
 app.get('/',(req, res) => {
